@@ -1,0 +1,25 @@
+{
+  "name": "trusttag-protocol",
+  "version": "1.0.0",
+  "description": "Decentralized lost-and-found protocol using Web3 wallets, Soulbound Tokens, and decentralized storage.",
+  "private": true,
+  "workspaces": [
+    "apps/web",
+    "apps/cortex",
+    "packages/contracts",
+    "packages/shared"
+  ],
+  "scripts": {
+    "web:dev": "npm run dev --workspace=web",
+    "web:build": "npm run build --workspace=web",
+    "cortex:dev": "npm run dev --workspace=cortex",
+    "cortex:build": "npm run build --workspace=cortex",
+    "cortex:test": "npm run test --workspace=cortex",
+    "cortex:migrate": "npm run db:migrate --workspace=cortex",
+    "contracts:compile": "npm run compile --workspace=contracts",
+    "contracts:test": "npm run test --workspace=contracts",
+    "contracts:deploy:local": "npm run deploy:local --workspace=contracts",
+    "contracts:deploy:basesepolia": "npm run deploy:basesepolia --workspace=contracts",
+    "shared:build": "npm run build --workspace=shared"
+  }
+}

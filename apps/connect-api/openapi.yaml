@@ -1,0 +1,177 @@
+openapi: "3.0.3"
+info:
+  title: Lost & Found Connect API
+  description: Partner-facing REST API for surrendered-item bulk matching and recovery webhooks.
+  version: "1.0.0"
+
+servers:
+  - url: http://localhost:3001
+
+security:
+  - ApiKeyAuth: []
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+
+  schemas:
+    MatchInput:
+      type: object
+      required: [category, brand, colour]
+      properties:
+        finderAddress:
+          type: string
+          description: Ethereum address of the finder (optional)
+        category:
+          type: string
+        brand:
+          type: string
+        colour:
+          type: string
+        distinguishing:
+          type: string
+        phash:
+          type: string
+          description: 16-char hex perceptual hash computed from the item photo
+        locationHint:
+          type: string
+        description:
+          type: string
+        foundAt:
+          type: string
+          format: date-time
+
+    MatchResult:
+      type: object
+      properties:
+        foundReportId:
+          type: string
+        lostItemId:
+          type: integer
+        tokenId:
+          type: string
+        ownerAddress:
+          type: string
+        phashSimilarity:
+          type: number
+        attributeOverlap:
+          type: number
+        confidenceScore:
+          type: number
+        status:
+          type: string
+          enum: [Pending, Verified, Rejected]
+
+    ConfirmedEvent:
+      type: object
+      required: [id]
+      properties:
+        id:
+          type: string
+        blockNumber:
+          type: integer
+        eventName:
+          type: string
+        data:
+          type: object
+
+paths:
+  /surrendered-items/bulk-check:
+    post:
+      summary: Bulk-match surrendered items against active LOST reports
+      description: |
+        Submit a list of surrendered items. Each item is matched against all
+        active LOST reports using Cortex's shared matching library (pHash + attribute overlap).
+        Returns per-item match candidates sorted by confidence score descending.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [items]
+              properties:
+                items:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/MatchInput"
+            example:
+              items:
+                - category: electronics
+                  brand: apple
+                  colour: silver
+                  distinguishing: "scratched back"
+                  phash: "a4b3c2d1e0f1a2b3"
+      responses:
+        "200":
+          description: Match results per submitted item
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  matches:
+                    type: array
+                    items:
+                      type: array
+                      items:
+                        $ref: "#/components/schemas/MatchResult"
+              example:
+                matches:
+                  - - foundReportId: "abc-123"
+                      lostItemId: 42
+                      tokenId: "7"
+                      ownerAddress: "0xOwner..."
+                      phashSimilarity: 0.9375
+                      attributeOverlap: 1.0
+                      confidenceScore: 0.9625
+                      status: Pending
+        "400":
+          description: Bad request — items array missing
+        "401":
+          description: Unauthorized — API key missing or invalid
+
+  /webhook/recovery:
+    post:
+      summary: Notify of a confirmed recovery event
+      description: |
+        Called exclusively by the Section 1 indexer's confirmed-event stream.
+        NEVER called from raw chain events — this prevents partner notification
+        of a since-reorg'd recovery.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [event]
+              properties:
+                event:
+                  $ref: "#/components/schemas/ConfirmedEvent"
+            example:
+              event:
+                id: "evt_confirmed_abc123"
+                blockNumber: 1234567
+                eventName: "Released"
+                data:
+                  tokenId: "7"
+                  finder: "0xFinder..."
+      responses:
+        "200":
+          description: Event received and processed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+              example:
+                success: true
+        "400":
+          description: Bad request — event or event.id missing
+        "401":
+          description: Unauthorized — API key missing or invalid

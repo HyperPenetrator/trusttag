@@ -1,0 +1,59 @@
+version: '3.9'
+
+# ─────────────────────────────────────────────────────────────────
+#  TrustTag Protocol — Docker Compose (local dev stack)
+#
+#  Services:
+#    postgres  — Postgres 16 for Cortex's lost_items / found_reports / matches
+#    cortex    — Perceptual-hash matching engine  (port 3001)
+#
+#  The Next.js web app and Hardhat node are NOT included here
+#  because Next.js runs best with `npm run web:dev` directly.
+# ─────────────────────────────────────────────────────────────────
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: trusttag-pg
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: trusttag
+      POSTGRES_DB: trusttag_cortex
+    ports:
+      - '5432:5432'
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  cortex:
+    build:
+      context: ./apps/cortex
+      dockerfile: Dockerfile
+    container_name: trusttag-cortex
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      PORT: 3001
+      DATABASE_URL: postgresql://postgres:trusttag@postgres:5432/trusttag_cortex
+      CORS_ORIGINS: http://localhost:3000
+      PHASH_WEIGHT: '0.6'
+      ATTRIBUTE_WEIGHT: '0.4'
+      PHASH_HAMMING_THRESHOLD: '10'
+    ports:
+      - '3001:3001'
+    healthcheck:
+      test: ['CMD-SHELL', 'wget -qO- http://localhost:3001/health || exit 1']
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  pg_data:
+    driver: local
