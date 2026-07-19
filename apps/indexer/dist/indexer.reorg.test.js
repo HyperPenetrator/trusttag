@@ -33,6 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
+process.env.NODE_ENV = 'test';
 const index_1 = require("./index");
 const assert = __importStar(require("assert"));
 async function runTest() {

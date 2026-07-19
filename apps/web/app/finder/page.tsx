@@ -183,7 +183,7 @@ export default function FinderDashboard() {
       <div className="flex flex-col md:flex-row md:items-center justify-between border-b border-slate-800/80 pb-6 gap-4">
         <div>
           <h1 className="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-100 to-indigo-200 bg-clip-text text-transparent">
-            Finder Portal
+            Finder Home
           </h1>
           <p className="text-sm text-slate-400 mt-1">
             Found something? Submit a report to match it — or claim an escrow reward on-chain.

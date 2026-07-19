@@ -55,10 +55,10 @@ export default function Header() {
 
         <nav className="hidden md:flex items-center gap-6">
           <Link href="/owner" className="text-sm font-medium text-slate-400 hover:text-indigo-400 transition-colors">
-            Owner Passport
+            Owner Information
           </Link>
           <Link href="/finder" className="text-sm font-medium text-slate-400 hover:text-indigo-400 transition-colors">
-            Finder Dashboard
+            Finder Home
           </Link>
           <Link href="/arbiter" className="text-sm font-medium text-slate-400 hover:text-indigo-400 transition-colors">
             Arbiter Courts

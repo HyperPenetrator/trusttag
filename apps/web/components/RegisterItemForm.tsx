@@ -207,7 +207,7 @@ function TxStatusPanel({
               Confirmed!
             </h3>
             <p className="text-sm text-slate-400">
-              Your Proof-of-Custody Token has been minted and is permanently
+              Your Digital Certificate has been created and is permanently
               recorded on {NETWORK_NAME}.
             </p>
 
@@ -215,9 +215,9 @@ function TxStatusPanel({
               <div className="rounded-xl bg-white/[0.03] border border-white/10 p-4 space-y-2 text-left">
                 <p className="text-xs text-slate-500 font-medium uppercase tracking-wide">Registration details</p>
                 <div className="space-y-1">
-                  <DetailRow label="IPFS CID" value={prepared.ipfsCid} mono />
+                  <DetailRow label="Secure Digital Record CID" value={prepared.ipfsCid} mono />
                   <DetailRow
-                    label="Integrity hash"
+                    label="Digital Fingerprint"
                     value={`${prepared.integrityHash.slice(0, 12)}…`}
                     mono
                   />
@@ -336,7 +336,7 @@ export function RegisterItemForm({ onSuccess }: { onSuccess?: () => void }) {
       });
 
       // ── Step B: Encrypt and pin ────────────────────────────────
-      setProcessingStep('Encrypting metadata and pinning to IPFS…');
+      setProcessingStep('Encrypting Extra Information and pinning to Secure Digital Record…');
       const input: ItemRegistrationInput = {
         name: name.trim(),
         brand: brand.trim(),
@@ -400,10 +400,10 @@ export function RegisterItemForm({ onSuccess }: { onSuccess?: () => void }) {
             <Package className="w-5 h-5 text-violet-400" />
           </div>
           <div>
-            <h3 className="font-semibold text-white text-base">Register an Item</h3>
+            <h3 className="font-semibold text-white text-base">Create Digital Certificate</h3>
             <p className="text-xs text-slate-500 mt-0.5">
               Your photos and details are encrypted in your browser before being pinned
-              to IPFS. Only the Keccak-256 hash is stored on-chain.
+              to Secure Digital Record. Only the Keccak-256 Digital Fingerprint is stored on-chain.
             </p>
           </div>
         </div>
@@ -543,14 +543,14 @@ export function RegisterItemForm({ onSuccess }: { onSuccess?: () => void }) {
           ) : (
             <span className="flex items-center justify-center gap-2">
               <Shield className="w-4 h-4" />
-              Encrypt &amp; Mint Proof-of-Custody Token
+              Encrypt &amp; Create Certificate
             </span>
           )}
         </button>
 
         <p className="text-xs text-slate-600 text-center">
           Two wallet confirmations required: one for the encryption key, one for the
-          on-chain mint. Read both carefully before signing.
+          on-chain creation. Read both carefully before signing.
         </p>
       </form>
     </>

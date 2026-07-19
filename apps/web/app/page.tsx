@@ -13,14 +13,14 @@ export default function Home() {
           Cryptographic Trust for Real-World Belongings
         </h1>
         <p className="text-lg text-slate-400 leading-relaxed max-w-2xl mx-auto">
-          AetherFind turns physical ownership proof into non-transferable Soulbound Tokens (SBT). Match lost items, lock bounties in escrow, and resolve disputes without centralized intermediaries.
+          AetherFind turns physical ownership proof into non-transferable Digital Certificates. Match lost items, lock bounties in escrow, and resolve disputes without centralized intermediaries.
         </p>
         <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
           <Link
             href="/owner"
             className="px-6 py-3.5 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-medium rounded-xl shadow-lg shadow-indigo-600/25 transition-all flex items-center gap-2"
           >
-            <ShieldCheck className="w-5 h-5" /> Owner Passport
+            <ShieldCheck className="w-5 h-5" /> Owner Information
           </Link>
           <Link
             href="/finder"
@@ -57,9 +57,9 @@ export default function Home() {
             <div className="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
               <Lock className="w-6 h-6" />
             </div>
-            <h3 className="text-xl font-semibold text-slate-100">Soulbound Token Passport</h3>
+            <h3 className="text-xl font-semibold text-slate-100">Digital Certificate Passport</h3>
             <p className="text-sm text-slate-400 leading-relaxed">
-              Items are minted as non-transferable ERC-721 Soulbound Tokens (SBT) representing immutable ownership, storing hashed item identifiers securely on-chain.
+              Items are created as non-transferable Digital Certificates representing ownership that Cannot Be Changed, storing hashed item identifiers securely on-chain.
             </p>
           </div>
 
@@ -70,7 +70,7 @@ export default function Home() {
             </div>
             <h3 className="text-xl font-semibold text-slate-100">Secure Escrow Rewards</h3>
             <p className="text-sm text-slate-400 leading-relaxed">
-              Bounties are locked securely in Smart Contract Escrow at the moment of loss and automatically released to finders upon validated receipt.
+              Bounties are locked securely in Digital Agreement Escrow at the moment of loss and automatically released to finders upon validated receipt.
             </p>
           </div>
 

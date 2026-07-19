@@ -105,7 +105,7 @@ function ItemRow({
         </div>
         <h4 className="font-bold text-white text-base">On-chain Registered Item</h4>
         <p className="text-xs text-slate-500 font-mono truncate max-w-xs md:max-w-md">
-          Integrity Hash: {item.metadataIntegrityHash}
+          Digital Fingerprint: {item.metadataIntegrityHash}
         </p>
         {isFoundPending && escrowInfo && (
           <div className="text-xs text-violet-300 mt-1 space-y-0.5">
@@ -217,7 +217,7 @@ export default function OwnerDashboard() {
       <div className="flex flex-col md:flex-row md:items-center justify-between border-b border-slate-800/80 pb-6 gap-4">
         <div>
           <h1 className="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-100 to-indigo-200 bg-clip-text text-transparent">
-            Owner Dashboard
+            Owner Information
           </h1>
           <p className="text-sm text-slate-400 mt-1">
             Manage your registered items, report losses, and confirm handoffs to release bounties.

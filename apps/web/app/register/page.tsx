@@ -15,23 +15,26 @@ export default function RegisterPage() {
         {/* Back nav */}
         <Link
           href="/owner"
-          className="inline-flex items-center gap-1.5 text-sm text-slate-400 hover:text-white mb-6 transition-colors"
+          className="inline-flex items-center gap-2 text-xs font-semibold text-slate-400 hover:text-white transition-colors"
         >
-          <ArrowLeft className="w-4 h-4" />
-          Back to dashboard
+          <ArrowLeft className="w-3.5 h-3.5" />
+          Back to home
         </Link>
-
-        {/* Card */}
-        <div className="glass-panel rounded-2xl p-6 md:p-8">
-          <RegisterItemForm
-            onSuccess={() => {
-              // Navigate back to owner dashboard after successful registration
-              setTimeout(() => router.push('/owner'), 1500);
-            }}
-          />
-        </div>
-
+        <h2 className="text-2xl font-bold text-white tracking-tight">Create Digital Certificate</h2>
+        <p className="text-xs text-slate-500 mt-1">
+          Mint a unique Proof-of-Custody Token (PoCT) representing verified item ownership.
+        </p>
       </div>
+
+      <div className="glass-panel p-8 rounded-3xl border border-white/5 shadow-xl max-w-xl mx-auto mt-6">
+        <RegisterItemForm
+          onSuccess={() => {
+            // Navigate back to owner home after successful registration
+            router.push('/owner');
+          }}
+        />
+      </div>
+
     </main>
   );
 }
