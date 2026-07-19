@@ -1,0 +1,150 @@
+[
+  {
+    "inputs": [{ "internalType": "address", "name": "_sbtAddress", "type": "address" }],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  { "inputs": [], "name": "DisputeAlreadyActive", "type": "error" },
+  { "inputs": [], "name": "InvalidStatus", "type": "error" },
+  { "inputs": [], "name": "JurorAlreadyVoted", "type": "error" },
+  { "inputs": [], "name": "NotFinder", "type": "error" },
+  { "inputs": [], "name": "NotItemOwner", "type": "error" },
+  { "inputs": [], "name": "WrongChallengeAnswer", "type": "error" },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "internalType": "uint256", "name": "tokenId", "type": "uint256" },
+      { "indexed": true, "internalType": "address", "name": "finder", "type": "address" },
+      { "indexed": false, "internalType": "uint256", "name": "amount", "type": "uint256" }
+    ],
+    "name": "BountyReleased",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [{ "indexed": true, "internalType": "uint256", "name": "tokenId", "type": "uint256" }],
+    "name": "ChallengeVerified",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [{ "indexed": true, "internalType": "uint256", "name": "tokenId", "type": "uint256" }],
+    "name": "DisputeOpened",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "internalType": "uint256", "name": "tokenId", "type": "uint256" },
+      { "indexed": true, "internalType": "address", "name": "winner", "type": "address" }
+    ],
+    "name": "DisputeResolved",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "internalType": "uint256", "name": "tokenId", "type": "uint256" },
+      { "indexed": false, "internalType": "uint256", "name": "bounty", "type": "uint256" }
+    ],
+    "name": "ItemReportedLost",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "internalType": "uint256", "name": "tokenId", "type": "uint256" },
+      { "indexed": true, "internalType": "address", "name": "finder", "type": "address" },
+      { "indexed": false, "internalType": "bytes32", "name": "challengeAnswerHash", "type": "bytes32" }
+    ],
+    "name": "LeadReported",
+    "type": "event"
+  },
+  {
+    "inputs": [{ "internalType": "uint256", "name": "tokenId", "type": "uint256" }],
+    "name": "completeHandoffAndRelease",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "name": "escrows",
+    "outputs": [
+      { "internalType": "uint256", "name": "bounty", "type": "uint256" },
+      { "internalType": "address", "name": "finder", "type": "address" },
+      { "internalType": "enum LostAndFoundEscrow.ItemStatus", "name": "status", "type": "uint8" },
+      { "internalType": "bytes32", "name": "challengeHash", "type": "bytes32" },
+      { "internalType": "string", "name": "locationProposal", "type": "string" },
+      { "internalType": "uint256", "name": "votesForOwner", "type": "uint256" },
+      { "internalType": "uint256", "name": "votesForFinder", "type": "uint256" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "name": "finderStats",
+    "outputs": [
+      { "internalType": "uint256", "name": "successfulRecoveries", "type": "uint256" },
+      { "internalType": "uint256", "name": "points", "type": "uint256" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "uint256", "name": "tokenId", "type": "uint256" }],
+    "name": "openDispute",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "tokenId", "type": "uint256" },
+      { "internalType": "string", "name": "locationProposal", "type": "string" },
+      { "internalType": "bytes32", "name": "challengeAnswerHash", "type": "bytes32" }
+    ],
+    "name": "reportFound",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "tokenId", "type": "uint256" },
+      { "internalType": "bytes32", "name": "challengeHash", "type": "bytes32" }
+    ],
+    "name": "reportLost",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "sbtContract",
+    "outputs": [{ "internalType": "contract LostAndFoundSBT", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "tokenId", "type": "uint256" },
+      { "internalType": "string", "name": "secretPreimage", "type": "string" }
+    ],
+    "name": "verifyChallengeAndConfirm",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "tokenId", "type": "uint256" },
+      { "internalType": "bool", "name": "voteForOwner", "type": "bool" }
+    ],
+    "name": "voteOnDispute",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]

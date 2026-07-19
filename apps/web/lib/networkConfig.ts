@@ -26,6 +26,13 @@ export const POCT_ADDRESS = (
   process.env.NEXT_PUBLIC_POCT_ADDRESS ?? ''
 ) as `0x${string}`;
 
+export const ESCROW_ADDRESS = (
+  process.env.NEXT_PUBLIC_LOST_FOUND_ESCROW_ADDRESS ?? ''
+) as `0x${string}`;
+
+export const CORTEX_URL =
+  process.env.NEXT_PUBLIC_CORTEX_URL ?? 'https://cortex-production-87e7.up.railway.app';
+
 /** Returns a full block-explorer link for a transaction hash. */
 export function txExplorerLink(txHash: string): string {
   return `${EXPLORER_URL}/tx/${txHash}`;
