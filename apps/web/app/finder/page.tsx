@@ -358,7 +358,9 @@ export default function FinderDashboard() {
                         <div className="flex gap-4 text-[10px] text-slate-500">
                           <span>Visual: {(m.phashSimilarity * 100).toFixed(1)}%</span>
                           <span>Attributes: {(m.attributeOverlap * 100).toFixed(0)}%</span>
-                          <span className="font-mono text-slate-600">{m.ownerAddress.slice(0, 10)}…</span>
+                          <span className="font-mono text-slate-600">
+                            {m.ownerAddress ? `${m.ownerAddress.slice(0, 10)}…` : 'Unknown'}
+                          </span>
                         </div>
                       </div>
                       <CheckCircle2 className="w-5 h-5 text-indigo-400 shrink-0" />
@@ -521,7 +523,9 @@ export default function FinderDashboard() {
                     )}
                     <div className="flex items-center gap-1 text-[10px] text-slate-500 border-t border-white/5 pt-1.5 font-mono">
                       <MapPin className="w-3 h-3 shrink-0" />
-                      <span className="truncate">{item.ownerAddress.slice(0, 12)}…</span>
+                      <span className="truncate">
+                        {item.ownerAddress ? `${item.ownerAddress.slice(0, 12)}…` : 'Unknown'}
+                      </span>
                     </div>
                   </div>
                 ))}
