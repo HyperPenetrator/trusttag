@@ -53,6 +53,7 @@ export default function FinderDashboard() {
   });
 
   // Off-chain found reports list (simulated database)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [offChainFoundReports, setOffChainFoundReports] = useState<any[]>([
     {
       id: 1,

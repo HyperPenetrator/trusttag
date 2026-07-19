@@ -91,7 +91,7 @@ Vercel is the best option for the Next.js frontend. It handles SSR, edge caching
 |---------|-------|
 | **Framework Preset** | Next.js |
 | **Root Directory** | `apps/web` |
-| **Build Command** | `cd ../.. && npm install && npm run shared:build && cd apps/web && npm run build` |
+| **Build Command** | `cd ../.. && npm install --include=dev && npm run shared:build && cd apps/web && npm run build` |
 | **Output Directory** | `.next` |
 | **Install Command** | `npm install` |
 
@@ -106,7 +106,7 @@ In the Vercel dashboard → **Settings → Environment Variables**, add:
 # ── Network ──────────────────────────────────────────────
 NEXT_PUBLIC_NETWORK_NAME="Base Sepolia"
 NEXT_PUBLIC_CHAIN_ID=84532
-NEXT_PUBLIC_RPC_URL=https://base-sepolia.g.alchemy.com/v2/YOUR_KEY
+NEXT_PUBLIC_RPC_URL=https://base-sepolia.g.alchemy.com/v2/ochESiSjTM1f8za7ncSou
 NEXT_PUBLIC_EXPLORER_URL=https://sepolia.basescan.org
 
 # ── Deployed Contract Addresses ──────────────────────────
@@ -142,7 +142,7 @@ npx vercel --prod
 | Setting | Value |
 |---------|-------|
 | **Base directory** | `(root)` |
-| **Build command** | `npm install && npm run shared:build && cd apps/web && npm run build` |
+| **Build command** | `npm install --include=dev && npm run shared:build && cd apps/web && npm run build` |
 | **Publish directory** | `apps/web/.next` |
 
 ### Netlify-specific setup
@@ -152,7 +152,7 @@ npx vercel --prod
    # netlify.toml (in repo root)
    [build]
      base = "."
-     command = "npm install && npm run shared:build && cd apps/web && npm run build"
+     command = "npm install --include=dev && npm run shared:build && cd apps/web && npm run build"
      publish = "apps/web/.next"
 
    [[plugins]]
@@ -175,7 +175,7 @@ npx vercel --prod
 |---------|-------|
 | **Framework preset** | Next.js |
 | **Root directory** | `apps/web` |
-| **Build command** | `cd ../.. && npm install && npm run shared:build && cd apps/web && npx @cloudflare/next-on-pages` |
+| **Build command** | `cd ../.. && npm install --include=dev && npm run shared:build && cd apps/web && npx @cloudflare/next-on-pages` |
 | **Output directory** | `.vercel/output/static` |
 
 3. Set environment variables (same as Vercel).

@@ -81,7 +81,7 @@ export function ApproveConfirmationModal({
           <div className="flex items-start gap-2 text-xs text-slate-500 bg-white/[0.01] p-3 rounded-lg border border-dashed border-white/5">
             <HelpCircle className="w-4 h-4 shrink-0 text-slate-600 mt-0.5" />
             <p>
-              By proceeding, the wallet's native token approval dialog will fire. The approved limit matches the lockup amount exactly to prevent security exposure.
+              By proceeding, the wallet&apos;s native token approval dialog will fire. The approved limit matches the lockup amount exactly to prevent security exposure.
             </p>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldAlert, ExternalLink, Globe, Hardhat } from 'lucide-react';
+import { ShieldAlert, ExternalLink, Globe, Cpu } from 'lucide-react';
 
 export default function VerifyPage() {
   return (
@@ -44,7 +44,7 @@ export default function VerifyPage() {
         {/* Smart Contracts */}
         <div className="glass-panel p-8 rounded-3xl border border-slate-800/80 space-y-4">
           <div className="flex items-center gap-2.5 text-indigo-400 font-semibold border-b border-slate-800 pb-3">
-            <Hardhat className="w-5 h-5" /> Verified Smart Contracts
+            <Cpu className="w-5 h-5" /> Verified Smart Contracts
           </div>
           <div className="space-y-4">
             <div className="p-4 bg-slate-950 border border-slate-800 rounded-xl space-y-2">

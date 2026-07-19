@@ -18,7 +18,7 @@ export default function Footer() {
             id="link-verify-domain"
             className="hover:text-slate-300 font-semibold transition-colors"
           >
-            Verify you're on the real TrustTag site
+            Verify you&apos;re on the real TrustTag site
           </Link>
         </div>
       </div>

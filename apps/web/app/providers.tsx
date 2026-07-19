@@ -145,7 +145,7 @@ function WalletProviderInner({ children }: { children: React.ReactNode }) {
               <div className="flex gap-3">
                 <span className="flex-shrink-0 w-6 h-6 rounded-full bg-slate-800 text-xs font-bold flex items-center justify-center text-indigo-400 border border-slate-700/50">3</span>
                 <p className="leading-relaxed">
-                  Every write action (minting SBTs, locking or releasing escrow, voting) will prompt a wallet signature/confirmation showing exactly what you're approving. <strong>Read the details before signing.</strong>
+                  Every write action (minting SBTs, locking or releasing escrow, voting) will prompt a wallet signature/confirmation showing exactly what you&apos;re approving. <strong>Read the details before signing.</strong>
                 </p>
               </div>
             </div>

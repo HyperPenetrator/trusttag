@@ -43,6 +43,7 @@ export default function OwnerDashboard() {
   const [hasApprovedBounty, setHasApprovedBounty] = useState(false);
 
   // Local/mock items to display along with on-chain items for demo purposes
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [mockItems, setMockItems] = useState<any[]>([
     {
       id: 99,
