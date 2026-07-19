@@ -39,6 +39,7 @@ export default function FinderDashboard() {
   const [matchResults, setMatchResults] = useState<Array<{
     lostItemId: number;
     tokenId: string;
+    ownerAddress: string;
     phashSimilarity: number;
     attributeOverlap: number;
     confidenceScore: number;
