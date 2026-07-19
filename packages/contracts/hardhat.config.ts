@@ -11,7 +11,7 @@ import * as dotenv from "dotenv";
 import { NETWORKS } from "./networks.config";
 
 // Load .env from the monorepo root (one level up from packages/contracts)
-dotenv.config({ path: "../.env" });
+dotenv.config({ path: "../../.env" });
 
 const DEPLOYER_PRIVATE_KEY: string[] = process.env.PRIVATE_KEY
   ? [process.env.PRIVATE_KEY]
@@ -46,9 +46,7 @@ const config: HardhatUserConfig = {
 
   // Etherscan-compatible block-explorer API config for `hardhat verify`
   etherscan: {
-    apiKey: {
-      baseSepolia: process.env.BASESCAN_API_KEY || "",
-    },
+    apiKey: process.env.BASESCAN_API_KEY as string,
     customChains: [
       {
         network: "baseSepolia",
