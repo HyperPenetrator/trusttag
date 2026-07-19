@@ -214,8 +214,13 @@ npm i -g @railway/cli
 railway login
 railway link
 
-# Set the service root
-railway service --set apps/cortex
+# Link local service context to cortex
+railway service link cortex
+
+# Note: Since cortex depends on shared monorepo packages (packages/cortex-matching),
+# the build context must be the repository root. Configure these in the Railway dashboard:
+# 1. Go to the 'cortex' service -> Settings -> Root Directory and set it to: /
+# 2. Under Build -> Dockerfile Path, set it to: apps/cortex/Dockerfile
 
 # Set environment variables
 railway variables --set DATABASE_URL="postgresql://..."
@@ -229,7 +234,7 @@ railway variables --set PHASH_HAMMING_THRESHOLD=10
 railway up
 ```
 
-Railway will auto-detect the Dockerfile at `apps/cortex/Dockerfile` and build from it.
+Railway will use the repository root directory context to build using `apps/cortex/Dockerfile`.
 
 #### 3. Run migrations
 
@@ -304,11 +309,12 @@ The connect-api is a lightweight Express service. Deploy it alongside Cortex on 
 
 ### Railway / Render / Fly.io
 
-Same steps as Cortex, but:
-- **Root Directory**: `apps/cortex` → `apps/connect-api`
-- **No Dockerfile** exists yet — add one or use the Node.js buildpack
-- Set `CONNECT_API_KEY` as a secret
-- Set `PORT` (different from Cortex, e.g. `3002`)
+Same steps as Cortex:
+- **Link local context**: Run `railway service link connect-api`
+- **Root Directory in dashboard**: Set to `/` (since it also depends on `packages/cortex-matching`)
+- **No Dockerfile** exists yet — add a Dockerfile (similar to Cortex's monorepo Dockerfile but copying `apps/connect-api` instead) or set up a custom start command using the Node.js buildpack.
+- Set `CONNECT_API_KEY` as a secret variable
+- Set `PORT` (e.g. `3002`)
 
 ```env
 PORT=3002
@@ -327,10 +333,19 @@ The indexer is a **long-running process** that watches for on-chain events. It m
 ### Recommended: Railway Worker
 
 ```bash
-# Create as a worker (not web) service — no HTTP port needed
-railway service --set apps/indexer
+# Link local context to the indexer service
+railway service link indexer
+
+# Note: In the Railway dashboard:
+# 1. Set the Root Directory to /
+# 2. Under settings, configure the build command: npm run indexer:build (or configure a Dockerfile)
+# 3. Configure the start command: node apps/indexer/dist/index.js
+
+# Set environment variables
 railway variables --set RPC_URL="wss://base-sepolia.g.alchemy.com/v2/YOUR_KEY"
 railway variables --set CONFIRMATIONS_REQUIRED=5
+
+# Deploy
 railway up
 ```
 
