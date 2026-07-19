@@ -11,6 +11,10 @@ WORKDIR /app
 # Copy root configurations if any, and workspace manifests
 COPY package.json package-lock.json ./
 COPY apps/cortex/package.json ./apps/cortex/
+COPY apps/web/package.json ./apps/web/
+COPY apps/indexer/package.json ./apps/indexer/
+COPY packages/contracts/package.json ./packages/contracts/
+COPY packages/shared/package.json ./packages/shared/
 COPY packages/cortex-matching/package.json ./packages/cortex-matching/
 
 # Install dependencies for both the root and the workspaces
@@ -37,6 +41,10 @@ ENV NODE_ENV=production
 # Copy built artifacts and package descriptors
 COPY --from=builder /app/package.json /app/package-lock.json ./
 COPY --from=builder /app/apps/cortex/package.json ./apps/cortex/
+COPY --from=builder /app/apps/web/package.json ./apps/web/
+COPY --from=builder /app/apps/indexer/package.json ./apps/indexer/
+COPY --from=builder /app/packages/contracts/package.json ./packages/contracts/
+COPY --from=builder /app/packages/shared/package.json ./packages/shared/
 COPY --from=builder /app/packages/cortex-matching ./packages/cortex-matching/
 COPY --from=builder /app/apps/cortex/dist ./apps/cortex/dist/
 
@@ -52,4 +60,5 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=10s \
   CMD wget -qO- http://localhost:3001/health || exit 1
 
 CMD ["node", "apps/cortex/dist/index.js"]
+
 
