@@ -1,20 +1,23 @@
 {
   "name": "indexer",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "TrustTag Indexer - monitors on-chain events with reorg safety",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "ts-node src/indexer.reorg.test.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
-  "devDependencies": {
-    "@types/node": "^26.1.1",
+  "dependencies": {
     "dotenv": "^17.4.2",
-    "ts-node": "^10.9.2",
-    "typescript": "^7.0.2",
     "viem": "^2.55.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.3"
   }
 }

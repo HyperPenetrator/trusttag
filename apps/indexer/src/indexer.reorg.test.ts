@@ -1,3 +1,4 @@
+process.env.NODE_ENV = 'test';
 import { indexer, CONFIRMATIONS_REQUIRED } from './index';
 import * as assert from 'assert';
 

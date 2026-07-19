@@ -6,8 +6,10 @@
   "workspaces": [
     "apps/web",
     "apps/cortex",
+    "apps/indexer",
     "packages/contracts",
-    "packages/shared"
+    "packages/shared",
+    "packages/cortex-matching"
   ],
   "scripts": {
     "web:dev": "npm run dev --workspace=web",
@@ -16,6 +18,8 @@
     "cortex:build": "npm run build --workspace=cortex",
     "cortex:test": "npm run test --workspace=cortex",
     "cortex:migrate": "npm run db:migrate --workspace=cortex",
+    "indexer:build": "npm run build --workspace=indexer",
+    "indexer:test": "npm run test --workspace=indexer",
     "contracts:compile": "npm run compile --workspace=contracts",
     "contracts:test": "npm run test --workspace=contracts",
     "contracts:deploy:local": "npm run deploy:local --workspace=contracts",
