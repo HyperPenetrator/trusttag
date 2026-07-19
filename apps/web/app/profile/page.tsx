@@ -53,7 +53,7 @@ export default function ProfilePage() {
             <div className="bg-white p-6 rounded-lg shadow-md mb-8 border border-gray-200">
                 <h2 className="text-xl font-semibold mb-4">Lead Score</h2>
                 <div className="text-3xl text-blue-600 font-bold">
-                    {isLoading ? 'Loading...' : (leadScore !== undefined ? leadScore.toString() : '0')}
+                    {isLoading ? 'Loading...' : (leadScore !== undefined && leadScore !== null ? leadScore.toString() : '0')}
                 </div>
             </div>
 
