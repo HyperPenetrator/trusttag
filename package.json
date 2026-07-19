@@ -25,5 +25,8 @@
     "contracts:deploy:local": "npm run deploy:local --workspace=contracts",
     "contracts:deploy:basesepolia": "npm run deploy:basesepolia --workspace=contracts",
     "shared:build": "npm run build --workspace=shared"
+  },
+  "overrides": {
+    "ox": "0.6.7"
   }
 }

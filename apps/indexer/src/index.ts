@@ -85,7 +85,7 @@ class Indexer {
         }
         try {
             const block = await publicClient.getBlock({ blockNumber: BigInt(blockNumber) });
-            return block.hash;
+            return block.hash ?? '';
         } catch (err) {
             console.error(`[indexer] Failed to get block hash for ${blockNumber}:`, err);
             return '';

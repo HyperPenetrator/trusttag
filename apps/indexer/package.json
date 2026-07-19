@@ -13,7 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^17.4.2",
-    "viem": "^2.55.2"
+    "viem": "2.21.58"
   },
   "devDependencies": {
     "@types/node": "^20.14.10",
