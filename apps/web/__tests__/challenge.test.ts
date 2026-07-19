@@ -1,4 +1,5 @@
-import { POST, mockMatches } from '../app/api/challenge/route';
+import { POST } from '../app/api/challenge/route';
+import { mockMatches } from '../app/api/challenge/mockMatches';
 import { generatePrivateKey, privateKeyToAccount } from 'viem/accounts';
 import { hashMessage } from 'viem';
 import * as assert from 'assert';
